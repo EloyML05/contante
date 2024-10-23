@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.ausiasmarch.contante.entity.UsuarioEntity;
+import net.ausiasmarch.contante.exception.DefaultException;
 import net.ausiasmarch.contante.service.UsuarioService;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*", maxAge = 3600)
@@ -30,39 +31,39 @@ public class Usuario {
     UsuarioService oUsuarioService;
 
     @GetMapping("")
-    public ResponseEntity<Page<UsuarioEntity>> getPage(
+    public ResponseEntity<Page<UsuarioEntity>> getPage (
             Pageable oPageable,
-            @RequestParam  Optional<String> filter) {
+            @RequestParam  Optional<String> filter) throws DefaultException {
         return new ResponseEntity<Page<UsuarioEntity>>(oUsuarioService.getPage(oPageable, filter), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioEntity> getUsuario(@PathVariable Long id) {
+    public ResponseEntity<UsuarioEntity> getUsuario(@PathVariable Long id)throws DefaultException {
         return new ResponseEntity<UsuarioEntity>(oUsuarioService.get(id), HttpStatus.OK);
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Long> count() {
+    public ResponseEntity<Long> count()throws DefaultException {
         return new ResponseEntity<Long>(oUsuarioService.count(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Long> delete(@PathVariable Long id) {
+    public ResponseEntity<Long> delete(@PathVariable Long id)throws DefaultException {
         return new ResponseEntity<Long>(oUsuarioService.delete(id), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<UsuarioEntity> create(@RequestBody UsuarioEntity oUsuarioEntity) {
+    public ResponseEntity<UsuarioEntity> create(@RequestBody UsuarioEntity oUsuarioEntity)throws DefaultException {
         return new ResponseEntity<UsuarioEntity>(oUsuarioService.create(oUsuarioEntity), HttpStatus.OK);
     }
 
     @PutMapping("")
-    public ResponseEntity<UsuarioEntity> update(@RequestBody UsuarioEntity oUsuarioEntity) {
+    public ResponseEntity<UsuarioEntity> update(@RequestBody UsuarioEntity oUsuarioEntity)throws DefaultException {
         return new ResponseEntity<UsuarioEntity>(oUsuarioService.update(oUsuarioEntity), HttpStatus.OK);
     }
 
     @PostMapping("/random/{cantidad}")
-    public ResponseEntity<Long> create(@PathVariable Long cantidad) {
+    public ResponseEntity<Long> create(@PathVariable Long cantidad)throws DefaultException {
         return new ResponseEntity<Long>(oUsuarioService.randomCreate(cantidad), HttpStatus.OK);
     }
 

@@ -13,7 +13,7 @@ import net.ausiasmarch.contante.exception.ResourceNotFoundException;
 import net.ausiasmarch.contante.repository.UsuarioRepository;
 
 @Service
-public class UsuarioService {
+public class UsuarioService  {
 
     @Autowired
     UsuarioRepository oUsuarioRepository;
@@ -72,7 +72,8 @@ public class UsuarioService {
     }
 
     public UsuarioEntity update(UsuarioEntity oUsuarioEntity) {
-        UsuarioEntity oUsuarioEntityFromDatabase = oUsuarioRepository.findById(oUsuarioEntity.getId()).orElseThrow(() -> new ResourceNotEditException("Usuario no encontrado"));
+        //.orElseThrow(() -> new ResourceNotEditException("Usuario no encontrado"))
+        UsuarioEntity oUsuarioEntityFromDatabase = oUsuarioRepository.findById(oUsuarioEntity.getId()).orElseThrow(() -> new ResourceNotEditException("Fallo al editar"));
         if (oUsuarioEntity.getNombre() != null) {
             oUsuarioEntityFromDatabase.setNombre(oUsuarioEntity.getNombre());
         }

@@ -25,12 +25,22 @@ public class ApplicationExceptionHandler {
 
     @ExceptionHandler(value = ResourceNotEditException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ResponseEntity<ErrorBean> resourceNotEditException(ResourceNotFoundException exception) {
+    public ResponseEntity<ErrorBean> resourceNotEditException(ResourceNotEditException exception) {
         ErrorBean oErrorBean = new ErrorBean();
         oErrorBean.setMessage(exception.getMessage());
         oErrorBean.setStatus(HttpStatus.NOT_FOUND.value());
         oErrorBean.setTimestamp(LocalDateTime.now());
         return new ResponseEntity<>(oErrorBean, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<ErrorBean> defaultException(Exception exception) {
+        ErrorBean oErrorBean = new ErrorBean();
+        oErrorBean.setMessage(exception.getMessage());
+        oErrorBean.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
+        oErrorBean.setTimestamp(LocalDateTime.now());
+        return new ResponseEntity<>(oErrorBean, HttpStatus.INTERNAL_SERVER_ERROR);
     }
     
 
