@@ -43,27 +43,27 @@ public class Usuario {
     }
 
     @GetMapping("/count")
-    public ResponseEntity<Long> count()throws DefaultException {
+    public ResponseEntity<Long> count() {
         return new ResponseEntity<Long>(oUsuarioService.count(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Long> delete(@PathVariable Long id)throws DefaultException {
+    public ResponseEntity<Long> delete(@PathVariable Long id) {
         return new ResponseEntity<Long>(oUsuarioService.delete(id), HttpStatus.OK);
     }
 
     @PostMapping("")
-    public ResponseEntity<UsuarioEntity> create(@RequestBody UsuarioEntity oUsuarioEntity)throws DefaultException {
+    public ResponseEntity<UsuarioEntity> create(@RequestBody UsuarioEntity oUsuarioEntity) {
         return new ResponseEntity<UsuarioEntity>(oUsuarioService.create(oUsuarioEntity), HttpStatus.OK);
     }
 
     @PutMapping("")
-    public ResponseEntity<UsuarioEntity> update(@RequestBody UsuarioEntity oUsuarioEntity)throws DefaultException {
+    public ResponseEntity<UsuarioEntity> update(@RequestBody UsuarioEntity oUsuarioEntity) {
         return new ResponseEntity<UsuarioEntity>(oUsuarioService.update(oUsuarioEntity), HttpStatus.OK);
     }
 
     @PostMapping("/random/{cantidad}")
-    public ResponseEntity<Long> create(@PathVariable Long cantidad)throws DefaultException {
+    public ResponseEntity<Long> create(@PathVariable Long cantidad) {
         return new ResponseEntity<Long>(oUsuarioService.randomCreate(cantidad), HttpStatus.OK);
     }
 
